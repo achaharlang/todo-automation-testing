@@ -1,0 +1,21 @@
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const PORT = 4000;
+
+app.use(cors());
+app.use(express.json());
+
+let todos = [
+  { id: 1, title: 'اولین تسک' },
+  { id: 2, title: 'دومین تسک' }
+];
+
+app.get('/todos', (req, res) => {
+  res.json(todos);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

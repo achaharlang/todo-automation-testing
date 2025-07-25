@@ -1,0 +1,42 @@
+# 1. Login (valid)
+curl --location --request POST 'http://localhost:4000/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "email": "hr@remwaste.com",
+  "password": "P@ssword1234"
+}'
+
+
+# 2. Login (invalid)
+curl --location --request POST 'http://localhost:4000/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "email": "wrong@example.com",
+  "password": "wrongpass"
+}'
+
+
+# 3. Get all todos
+curl --location --request GET 'http://localhost:4000/todos'
+
+
+# 4. Create new item
+curl --location --request POST 'http://localhost:4000/todos' \
+--header 'Content-Type: application/json' \
+--data '{
+  "title": "Test Task from curl",
+  "completed": false
+}'
+
+
+# 5. Update item (change ID to real one)
+curl --location --request PUT 'http://localhost:4000/todos/ID' \
+--header 'Content-Type: application/json' \
+--data '{
+  "title": "Updated Task from curl",
+  "completed": true
+}'
+
+
+# 6. Delete item (change ID to real one)
+curl --location --request DELETE 'http://localhost:4000/todos/ID'

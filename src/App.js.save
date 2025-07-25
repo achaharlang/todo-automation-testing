@@ -1,0 +1,138 @@
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+const [editingId, setEditingId] = React.useState(null);
+const [editTitle, setEditTitle] = React.useState('');
+
+
+  useEffect(() => {
+    fetch('http://localhost:4000/todos')
+      .then(res => res.json())
+      .then(data => setTodos(data));
+  }, []);
+
+  const addTodo = async () => {
+    if (!input.trim()) return;
+    const res = await fetch('http://localhost:4000/todos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: input })
+    });
+    const newTodo = await res.json();
+    setTodos(prev => [...prev, newTodo]);
+    setInput('');
+  };
+
+  const deleteTodo = async (id) => {
+    await fetch(`http://localhost:4000/todos/${id}`, {
+      method: 'DELETE'
+    });
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  };
+
+
+const handleEdit = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:4000/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: editingTitle })
+    });
+
+    if (res.ok) {
+      const updatedTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, title: editingTitle } : todo
+      );
+      setTodos(updatedTodos);
+    }
+
+    setEditingId(null);
+    setEditingTitle('');
+  } catch (err) {
+    console.error('Error updating todo:', err);
+  }
+};
+
+
+
+  return (
+    <div style={{ padding: '2rem' }}>
+      <h1>Todo List</h1>
+      <input
+        placeholder="please insert new task"
+        value={input}
+        onChange={e => setInput(e.target.value)}
+      />
+      <button onClick={addTodo}>Add Task</button>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            {todo.title}
+            <button onClick={() => deleteTodo(todo.id)} style={{ marginLeft: '1rem' }}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+{todos.map(todo => (
+  <li key={todo.id}>
+    {editingId === todo.id ? (
+      <input
+        type="text"
+        value={editTitle}
+        onChange={(e) => setEditTitle(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            saveEdit(todo.id);
+          }
+        }}
+      />
+    ) : (
+      <span>{todo.title}</span>
+    )}
+
+    {editingId === todo.id ? (
+      <button onClick={() => saveEdit(todo.id)}>Save</button>
+    ) : (
+      <button onClick={() => {
+        setEditingId(todo.id);
+        setEditTitle(todo.title);
+      }}>Edit</button>
+    )}
+
+    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+  </li>
+))}
+
+
+{editingId === todo.id ? (
+  <input
+    type="text"
+    value={editingTitle}
+    onChange={(e) => setEditingTitle(e.target.value)}
+    onBlur={() => handleEdit(todo.id)}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') handleEdit(todo.id);
+    }}
+    autoFocus
+  />
+) : (
+  <span onClick={() => {
+    setEditingId(todo.id);
+    setEditingTitle(todo.title);
+  }}>
+    {todo.title}
+  </span>
+)}
+
+
+  );
+}
+
+export default App;
