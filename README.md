@@ -25,9 +25,8 @@ Functional UI and API tests have been written using Cypress and Postman/Newman.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/achaharlang/todo-automation-testing.git>
-cd todo-frontend
-
+git clone https://github.com/achaharlang/todo-automation-testing.git
+cd todo-automation-testing
 
 
 ### 2. Install dependencies
