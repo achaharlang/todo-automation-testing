@@ -4,7 +4,7 @@ describe('Todo App Automation Tests', () => {
     cy.wait(500);
 
     // Login
-    cy.get('input[placeholder="Enter your email"]').type('hr@remwaste.com');cy.wait(500);
+    cy.get('input[placeholder="Enter your email"]').type('automationtest');cy.wait(500);
     cy.get('input[placeholder="Enter your password"]').type('P@ssword1234');cy.wait(500);    
     cy.contains('button', 'Login').click();cy.wait(500);
     
