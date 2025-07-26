@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"hr@remwaste.com\",\n  \"password\": \"P@ssword1234\"\n}",
+					"raw": "{\n  \"email\": \"automationtest\",\n  \"password\": \"P@ssword1234\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
