@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Dummy user for login
 const user = {
-  email: 'hr@remwaste.com',
+  email: 'automationtest',
   password: 'P@ssword1234'
 };
 
