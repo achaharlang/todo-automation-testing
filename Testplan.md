@@ -44,7 +44,7 @@ _________________________________________
 
 | Field     | Value                |
 |-----------|----------------------|
-| Email     | `hr@remwaste.com`   |
+| Email     | `automationtest`   |
 | Password  | `P@ssword1234`      |
 
 Sample request body for creating a todo:
