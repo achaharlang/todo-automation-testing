@@ -54,7 +54,7 @@ Backend runs on: http://localhost:4000
 
 ## User Test info
 
-Username: hr@remwaste.com
+Username: automationtest
 Password: P@ssword1234
 
 _______________________________________
