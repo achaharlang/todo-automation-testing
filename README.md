@@ -28,6 +28,8 @@ Functional UI and API tests have been written using Cypress and Postman/Newman.
 git clone https://github.com/achaharlang/todo-automation-testing.git
 cd todo-automation-testing
 
+//By cloning from github, the root directory may change to todo-automation-testing, in this case, please consider replacing todo-automation-testing with todo-frontend.
+
 
 ### 2. Install dependencies
 
@@ -101,7 +103,7 @@ _________________________________________
 
 ##  Project Structure
 
-//todo-frontend Directory is Project Root
+//todo-frontend or todo-automation-testing Directory is Project Root
 
 ├── todo-frontend/             # React App
 ├── todo-frontend/todo-backend/              # Node.js API
@@ -110,4 +112,11 @@ _________________________________________
 ├── todo-frontend/README.md             # This file
 └── todo-frontend/Testplan.md           # Test Strategy Document
 
+or
 
+├── todo-automation-testing/             # React App
+├── todo-automation-testing/todo-backend/              # Node.js API
+├── todo-automation-testing/cypress/              # Cypress tests
+├── todo-automation-testing/REMWASTETASKS.postman_collection.json/              # Postman collection for API testing
+├── todo-automation-testing/README.md             # This file
+└── todo-automation-testing/Testplan.md           # Test Strategy Document
